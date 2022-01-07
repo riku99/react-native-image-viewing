@@ -19,6 +19,7 @@ import {
   TouchableWithoutFeedback,
   GestureResponderEvent,
 } from "react-native";
+import FastImage from "react-native-fast-image";
 
 import useDoubleTapToZoom from "../../hooks/useDoubleTapToZoom";
 import useImageDimensions from "../../hooks/useImageDimensions";
@@ -137,11 +138,18 @@ const ImageItem = ({
           onLongPress={onLongPressHandler}
           delayLongPress={delayLongPress}
         >
-          <Animated.Image
+          <Animated.View style={imageStylesWithOpacity}>
+            <FastImage
+              source={imageSrc}
+              onLoad={() => setLoaded(true)}
+              style={{ width: "100%", height: "100%" }}
+            />
+          </Animated.View>
+          {/* <Animated.Image
             source={imageSrc}
             style={imageStylesWithOpacity}
             onLoad={() => setLoaded(true)}
-          />
+          /> */}
         </TouchableWithoutFeedback>
       </ScrollView>
     </View>
